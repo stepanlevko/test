@@ -12,10 +12,10 @@ while True:
     if value.isdigit():
         num
 
-        if float(value.replace(',', '.', 1)) > 0:
-            print('Ви ввели позитивне дробове число: ', value)
-        elif float(value.replace(',', '.', 1)) < 0:
-            print('Ви ввели негативне дробове число: ', value)
+    if float(value.replace(',', '.', 1)) > 0:
+        print('Ви ввели позитивне дробове число: ', value)
+    elif float(value.replace(',', '.', 1)) < 0:
+        print('Ви ввели негативне дробове число: ', value)
     elif value.upper() in ('EXIT', 'QUIT', 'ВИХІД', 'E', 'Q'):
         break
     elif value.isalpha():
