@@ -1,5 +1,8 @@
-text = 'Hello world'
-value = 3.1415
-l = (1, 4, 5, 'yes', -2, '2')
-func = 'a' + 'b'
-print(text, value, l, func)
+
+value = input('Введіть число: ')
+if int(value) > 0:
+    print('Ви ввели позитивне ціле число: ', value)
+elif int(value) < 0:
+    print('Ви ввели негативне ціле число: ', value)
+else:
+    print('Ви ввели мабуть ZERO: ', value)
