@@ -19,7 +19,7 @@ class Auto(object):
         print(f'year birhday {item}')
 
 class Truck(Auto):
-    def __init__(self, brand, age, mark, max_load):
+    def __init__(self, brand, age, mark, max_load, color=None, weight=None):
         super().__init__(brand, age, mark)
         self.max_load = max_load
     def move(self):
