@@ -1,5 +1,6 @@
 import datetime
 import json
+import csv
 import re
 while True:
     class Human:
@@ -46,27 +47,25 @@ while True:
             return data
 
         def data_save(self):
-            with open('file_json.json', 'w') as file_json:
-                json.dump(data, file_json)
-            return data
+             with open('file_json.json', 'a', newline='\n', encoding='utf-8') as file_json:
+                 json.dump(data, file_json, indent=1, ensure_ascii=False)
+             return data
 
         def find_names(user):
-            with open('file_json.json') as file:
+            with open('file_json.json', encoding='utf-8') as file:
                 new_data = json.load(file)
-                res = list()
+                res = []
                 for k, v in new_data.items():
                     if str(user) in str(v):
                         res.append((k, v))
                 return res
             print(res)
-            # for i in res:
-            #     print(i)
 
-    poz = int(input('1 - завантаження бази даних, 2 - введення даних вручну, 3 - збереження даних, '
-              '4 - пошук особи. Введіть необхідне число: '))
+    poz = int(input('1 - завантаження бази даних, 2 - введення даних вручну, '
+                    '3 - пошук особи. Введіть необхідне число: '))
 
     if poz == 1:
-        with open('file_json.json') as file:
+        with open('file_json.json', encoding='utf-8') as file:
             data = json.load(file)
         print(data)
 
@@ -78,18 +77,21 @@ while True:
         deathday = str(input('Введіть дату смерті (якшо є) у форматі д/м/рік: '))
         sex = str((input('Виберыть вашу стать (необовязково) у форматі: [M] - чол, [F] - жін, '': ')).upper())
         full = Human(name=name, birthday=birthday, deathday=deathday)
-        data = {'name': name, 'surname': surname, 'secondname': secondname,
-                'birthday': birthday, 'deathday': deathday, 'sex': sex, 'full year':  full.full_year()}
+        data = {
+            'name': name,
+            'surname': surname,
+            'secondname': secondname,
+            'birthday': birthday,
+            'deathday': deathday,
+            'sex': sex,
+            'full year':  full.full_year()
+        }
         print(data)
-        Human.data_save(self=data)
+        Human.data_save(data)
+
     elif poz == 3:
-        with open('file_json.json') as file:
-            new_data = json.load(file)
+        print(Human.find_names(user=input('Кого шукаєте?: ').title()))
 
-    elif poz == 4:
-        print(Human.find_names(user=input('Кого шукаєте?: ')))
-
-    else:
+    elif poz != 1 and 2 and 3 and poz is not int():
         print('Введеного числа немає у списку варіантів. Спробуйте знову')
-
 pass
